@@ -13,7 +13,7 @@ const ContactSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid justify-center md:grid-cols-2 gap-8">
           <ContactForm />
           <ContactInfo />
         </div>

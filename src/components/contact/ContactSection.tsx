@@ -39,7 +39,7 @@ export default function ContactSection() {
           >
             <h3 className="text-xl font-semibold text-gray-900 mb-6">Contact Information</h3>
             <div className="space-y-4">
-              <div className="flex items-start">
+              <div className="flex items-center">
                 <MapPin className="h-6 w-6 text-blue-600 mt-1" />
                 <p className="ml-3 text-gray-600">
                   Meena plastics<br />

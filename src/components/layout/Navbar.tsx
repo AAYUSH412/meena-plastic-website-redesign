@@ -19,7 +19,7 @@ export default function Navbar() {
   return (
     <nav className="bg-white shadow-lg fixed w-full z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
+        <div className="flex justify-between h-16 w-auto items-center">
           <Link to="/" className="flex items-center">
             <Factory className="h-8 w-8 text-blue-600" />
             <span className="ml-2 text-xl font-bold text-gray-800">Meena Plastics</span>

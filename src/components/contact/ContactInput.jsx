@@ -14,7 +14,7 @@ const ContactInput = ({ label, type = 'text', name, value, onChange, required = 
           onChange={onChange}
           required={required}
           rows={4}
-          className="w-96 h-40 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-64 h-40 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       ) : (
         <input
@@ -24,7 +24,7 @@ const ContactInput = ({ label, type = 'text', name, value, onChange, required = 
           value={value}
           onChange={onChange}
           required={required}
-          className="w-96 h-12 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-64 h-12 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       )}
     </div>
