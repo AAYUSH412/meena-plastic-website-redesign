@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import ContactInput from './ContactInput';
 import { submitContactForm } from '../../utils/contactService';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
+
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -25,17 +28,17 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus({ submitting: true, submitted: false, error: null });
-
+  
     try {
       await submitContactForm(formData);
       setStatus({ submitting: false, submitted: true, error: null });
       setFormData({ name: '', email: '', message: '' });
       
-      // Show success message
-      alert('Message sent successfully!');
+      // Show success toast notification
+      toast.success('Message sent successfully!');
     } catch (error) {
       setStatus({ submitting: false, submitted: false, error: error.message });
-      alert('Failed to send message. Please try again.');
+      toast.error('Failed to send message. Please try again.');
     }
   };
 
@@ -63,7 +66,7 @@ const ContactForm = () => {
         value={formData.message}
         onChange={handleChange}
       />
-
+  
       <button
         type="submit"
         disabled={status.submitting}
@@ -74,12 +77,14 @@ const ContactForm = () => {
       >
         {status.submitting ? 'Sending...' : 'Send Message'}
       </button>
-
+  
       {status.error && (
         <p className="mt-4 text-red-600 text-sm">
           Error: {status.error}
         </p>
       )}
+  
+      <ToastContainer /> {/* Add this to display the toast notifications */}
     </form>
   );
 };

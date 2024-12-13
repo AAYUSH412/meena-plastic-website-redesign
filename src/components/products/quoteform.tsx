@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { toast } from 'react-hot-toast';
 import { submitQuoteRequest } from '../../utils/quoteservice';
+import { showSuccess, showError } from '../../utils/toast';
 import { Product } from '../../types';
 
 interface QuoteFormProps {
@@ -36,10 +36,10 @@ export default function QuoteForm({ product, onClose }: QuoteFormProps) {
         createdAt: new Date()
       });
       
-      toast.success('Quote request sent successfully!');
+      showSuccess('Quote request sent successfully! We will contact you soon.');
       onClose();
     } catch (error) {
-      toast.error('Failed to send quote request. Please try again.');
+      showError('Failed to send quote request. Please try again later.');
       console.error('Quote request error:', error);
     } finally {
       setIsSubmitting(false);

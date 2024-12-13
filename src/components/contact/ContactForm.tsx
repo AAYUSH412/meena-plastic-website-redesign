@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { toast } from 'react-hot-toast';
-import { ContactFormProps, ContactFormData } from '../../types/contact';
+import { submitContactForm } from '../../services/contact';
+import { showSuccess, showError } from '../../utils/toast';
+import { ContactFormData } from '../../types/contact';
 
-export default function ContactForm({ onSubmit }: ContactFormProps) {
+export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,15 +22,15 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
     setIsSubmitting(true);
 
     try {
-      await onSubmit({
+      await submitContactForm({
         ...formData,
         createdAt: new Date()
       } as ContactFormData);
       
-      toast.success('Message sent successfully!');
+      showSuccess('Message sent successfully! We will get back to you soon.');
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
-      toast.error('Failed to send message. Please try again.');
+      showError('Failed to send message. Please try again later.');
       console.error('Form submission error:', error);
     } finally {
       setIsSubmitting(false);
@@ -52,7 +53,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
         />
       </div>
-      
+
       <div>
         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
           Email
@@ -67,7 +68,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
         />
       </div>
-      
+
       <div>
         <label htmlFor="message" className="block text-sm font-medium text-gray-700">
           Message
@@ -82,7 +83,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
         />
       </div>
-      
+
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
