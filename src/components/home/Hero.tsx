@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 export default function Hero() {
   return (
@@ -53,15 +54,16 @@ export default function Hero() {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="mt-8 max-w-md mx-auto sm:flex sm:justify-center md:mt-10"
           >
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="#products"
-              className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10"
-            >
-              View Products
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </motion.a>
+            <Link to="/products">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10"
+              >
+                View Products
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </motion.button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>
