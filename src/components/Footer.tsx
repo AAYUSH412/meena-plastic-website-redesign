@@ -1,8 +1,24 @@
-import React from 'react';
-import { Mail, Phone, MapPin,Factory } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, Phone, MapPin, Factory } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { addNewsletterEmail } from '../utils/firebase';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Footer() {
+  const [email, setEmail] = useState('');
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    if (email) {
+      await addNewsletterEmail(email);
+      setEmail('');
+      toast.success('Subscribed successfully!');
+    } else {
+      toast.error('Please enter a valid email.');
+    }
+  };
+
   return (
     <footer className="bg-gray-900">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -54,16 +70,19 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">Newsletter</h3>
             <p className="text-gray-400 mb-4">Stay updated with our latest products and initiatives.</p>
-            <div className="flex">
+            <form className="flex" onSubmit={handleSubscribe}>
               <input
                 type="email"
+                name="email"
                 placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="px-4 py-2 rounded-l-md w-full focus:outline-none"
               />
-              <button className="bg-green-600 text-white px-4 py-2 rounded-r-md hover:bg-green-700">
+              <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded-r-md hover:bg-green-700">
                 Subscribe
               </button>
-            </div>
+            </form>
           </div>
         </div>
         
